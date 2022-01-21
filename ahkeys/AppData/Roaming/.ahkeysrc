@@ -1,0 +1,19 @@
+# 20190920121101
+[]
+^a=^{Home}
+^e=^{End}
+^h=^{Left}
+^j=^{Right}
+a={Home}
+d={PgDn}
+e={End}
+F1=%helpAHKeys
+F4=%quitAHKeys
+h={Left}
+j={Down}
+k={Up}
+l={Right}
+u={PgUp}
+F2=%helloWorld
+SC027=%toggleWindowsTerminal
+SC028=%toggleGvim

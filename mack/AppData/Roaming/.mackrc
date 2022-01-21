@@ -1,0 +1,4 @@
+--type-set lua:*.lua
+--type-add css:*.sass+*.scss
+--type-add js:*.ts
+--type-set c:*.c+*.cpp+*.h

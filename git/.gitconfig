@@ -1,0 +1,70 @@
+# This is Git's per-user configuration file.
+[core]
+	editor = gvim
+	trustctime = false
+	filemode = false
+	excludesfile = /c/Users/kpsch/.gitignore_global
+	attributesfile = /c/Users/kpsch/.gitattributes_global
+	autocrlf = true
+	safecrlf = false
+[user]
+	name = Klaus-Peter Schreiner
+	email = kpschreiner13p@gmail.com
+[alias]
+	hist = log --oneline --decorate=auto --graph
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	st = status -sb
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+[http]
+	sslcainfo = /usr/ssl/certs/ca-bundle.crt
+	sslbackend = openssl
+[https]
+[push]
+	default = current
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = cyan
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = blue bold
+	old = red
+	new = green
+[color "status"]
+	added = green
+	changed = yellow bold
+	untracked = red
+[i18n]
+	logOutputEncoding = UTF-8
+[merge]
+	tool = gvimdiff
+[mergetool]
+	keeptemporaries = false
+	keepbackups = false
+	prompt = false
+	trustexitcode = false
+[pull]
+	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = manager
+[lfs]
+	contenttype = 0
+[init]
+	defaultBranch = main
+[diff]
+	tool = gvimdiff
+	guitool = gvimdiff

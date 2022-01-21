@@ -1,0 +1,14 @@
+" set guifont=Victor_Mono_Medium:h16:W500:cANSI:qDRAFT
+" set guifont=VictorMono_Nerd_Font_Mono:h16:W600:cANSI:qDRAFT
+set guicursor=i-v-n:block-blinkon0
+" set guifont=CaskaydiaCove_Nerd_Font_Mono:h14:cANSI:qDRAFT
+" set guifont=Cascadia_Code_iCursive_Cg:h14:cANSI:qDRAFT
+" set guifont=Fira_Code_iCursive_S12:h15:cANSI:qDRAFT
+set guifont=FiraCode_NF:h14:cANSI:qDRAFT
+set guioptions=-TMrL
+set guioptions=c
+set renderoptions=type:directx,renmode:5,taamode:1,gamma:10,contrast:1,geom:1
+
+if has("autocmd")
+	autocmd GUIEnter * simalt ~x
+endif
