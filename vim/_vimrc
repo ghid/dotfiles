@@ -1,17 +1,25 @@
 " source $VIMRUNTIME/vimrc_example.vim
 
 "{{{1 General Customization
-"{{{2 Setup minpac
-" source $HOME/vimfiles/packages.vim
-"}}}
 
 "{{{2 Setup vim-plug
+call plug#begin('$HOME/vimfiles/pack/plugged')
 source $HOME/vimfiles/plugged.vim
+
+source $LOCALAPPDATA/vim-config/plugins/vim-lsp.vim
+source $LOCALAPPDATA/vim-config/plugins/emmet.vim
+source $LOCALAPPDATA/vim-config/plugins/quickrun.vim
+source $LOCALAPPDATA/vim-config/plugins/ctrlp.vim
+" source $LOCALAPPDATA/vim-config/plugins/ale.vim
+source $LOCALAPPDATA/vim-config/plugins/fern.vim
+source $LOCALAPPDATA/vim-config/plugins/hexokinase.vim
+source $LOCALAPPDATA/vim-config/plugins/python-syntax.vim
+
+call plug#end()
 "}}}
 
 "{{{2 Customize VIM 
 language messages en
-" set guitablabel=%N\ %t\ 
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -44,7 +52,6 @@ set scrolloff=8
 set showbreak=●
 set showtabline=2
 set smartindent
-set statusline=%!functions#Statusline()
 set wildignore+=NTUSER.DAT*,.git/**,node_modules/**
 if filereadable($HOME . "/vimfiles/" . $MYVIMPROFILE) | source $HOME/vimfiles/$MYVIMPROFILE | endif
 "}}}2
@@ -84,7 +91,6 @@ set grepformat=%f:%l:%c:%m
 "}}}2
 
 "{{{2 Setup shell
-" set shell=c:\Windows\System32\cmd.exe\ /k\ c:\opt\cmder\1.3.12\vendor\init.bat
 set shell=c:\Windows\System32\cmd.exe
 " set shell=C:\msys64\usr\bin\zsh.exe\ --login
 " set shell=c:/msys64/usr/bin/bash
@@ -93,7 +99,7 @@ set shell=c:\Windows\System32\cmd.exe
 
 "{{{2 Mappings
 let mapleader = " "
-nnoremap <F5> :redraw!
+nnoremap <C-l> :redraw!<CR>
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
@@ -128,36 +134,16 @@ vnoremap <leader>bd c<c-r>=system('b64dec -e ' . &fenc, @")<cr><esc>
 noremap <C-Left> :bprev<CR>
 noremap <C-Right> :bnext<CR>
 nnoremap - :Fern . -toggle -drawer<CR>
-inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm()
-			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-nmap <leader>gd <Plug>(coc-definitions)
-nmap <leader>gr <Plug>(coc-references)
+" inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm()
+			" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" nmap <leader>gd <Plug>(coc-definitions)
+" nmap <leader>gr <Plug>(coc-references)
 nnoremap <C-p> :Files!<CR>
 nmap <leader>ob <Plug>(openbrowser-open)
 "}}}2
 
-"{{{2 Setup Statusline & Tabline
-" call functions#Statusline()
-"}}}
-
 "{{{2 Commands
 command! -register CopyMatches call functions#CopyMatches(<q-reg>)
-command! DarkMode  colorscheme nofrils-dark
-			\ | let g:crystalline_theme="nofrils_dark"
-			\ | call functions#TweakHighlights()
-			\ | call crystalline#apply_current_theme() 
-command! LightMode colorscheme nofrils-acme
-			\ | let g:crystalline_theme="nofrils_acme"
-			\ | call functions#TweakHighlights()
-			\ | call crystalline#apply_current_theme() 
-command! BrightMode colorscheme nofrils-light
-			\ | let g:crystalline_theme="nofrils_light"
-			\ | call functions#TweakHighlights()
-			\ | call crystalline#apply_current_theme() 
-command! SepiaMode colorscheme nofrils-sepia
-			\ | let g:crystalline_theme="nofrils_sepia"
-			\ | call functions#TweakHighlights()
-			\ | call crystalline#apply_current_theme() 
 "}}}2
 
 "{{{2 Auto Commands
@@ -181,13 +167,11 @@ if has("autocmd")
 		autocmd FileType autohotkey setlocal fileencoding=utf-8 commentstring=;%s
 		autocmd FileType autohotkey let b:comment_leader="; "
 		autocmd FileType autohotkey let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', "'":"'"}
-		" autocmd FileType autohotkey RainbowParentheses
 	augroup JVM
 		autocmd!
 		autocmd FileType groovy,java,scala,kotlin setlocal commentstring=//%s
 		autocmd FileType groovy,java,scals,kotlin let b:comment_leader="// "
 		autocmd FileType groovy,java let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', "'":"'"}
-		" autocmd FileType groovy RainbowParentheses
 	augroup BAT
 		autocmd!
 		autocmd FileType dosbatch let b:comment_leader=":: "
@@ -259,90 +243,6 @@ nmap <C-x> :call <SID>SynStack()<CR>
 "}}}1
 
 "{{{1 Plugin Customization
-"{{{2 Crystalline
-" let g:crystalline_statusline_fn = 'functions#StatusLine'
-" let g:crystalline_tabline_fn = 'functions#TabLine'
-" let g:crystalline_theme = substitute(colors_name, "-", "_", "")
-" let g:crystalline_tab_mod = " * "
-"}}}2
-
-"{{{2 Emmet
-let g:user_emmet_leader_key = '<c-z>'
-"}}}2
-
-"{{{2 YouCompleteMe
-" let g:ycm_seed_identifiers_with_syntax = 1
-" let g:ycm_key_list_previous_completion = ['<Down>']
-" let g:ycm_key_list_select_completion = ['<Right>']
-" let g:ycm_key_list_stop_completion = ['<C-y']
-" " let g:ycm_use_ultisnips_completer = 0 
-" " let g:ycm_enable_diagnostic_signs = 0
-" " let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_add_preview_to_completeopt = 0
-" set completeopt-=preview
-"}}}2
-
-"{{{2 SnipMate
-let g:snipMate = {}
-let g:snipMate.description_in_completion = 1
-"}}}2
-
-"{{{2 Tagbar
-" let g:tagbar_iconchars = ['', '']
-" let g:tagbar_autofocus = 1
-"}}}2
-
-"{{{2 CtrlP 
-let g:ctrlp_custom_ignore = {
-			\ 'dir': '\v[\/]node_modules|\v[\/]\.(git|hg|svn)$',
-			\ 'file': '\v\.(exe|dll|class)$'
-			\ }
-"}}}2
-
-"{{{2 NERDTree
-" let g:NERDTreeDirArrowExpandable = ''
-" let g:NERDTreeDirArrowCollapsible = ''
-" let g:NERDTreeDirArrowExpandable = '▶'
-" let g:NERDTreeDirArrowCollapsible = '▼'
-" let NERDTreeQuitOnOpen = 1 
-"}}}2
-
-"{{{2 Syntastic
-" let g:syntastic_javascript_checkers = ["eslint"]
-" let g:syntastic_javascript_eslint_exe = "eslint"
-" let g:syntastic_javascript_arg = " "
-" let g:syntastic_check_on_open = 0
-" let g:syntasitc_check_on_wq = 0
-" let g:syntastic_map_mode = { "mode": "passive" }
-" let g:syntastic_stl_format = "%F;%e;%w"
-"}}}2
-
-"{{{2 Ale
-let g:ale_completion_enabled = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_open_list = 0
-let g:ale_jq_executable = "C:/opt/bin/jq.exe"
-let g:ale_xml_xmllint_executable = "C:/opt/bin/xmllint.exe"
-let g:ale_xml_xmlstarlet_executable = "C:/opt/bin/xml.exe"
-let g:ale_autohotkey_ahklint_executable = "C:/opt/bin/ahklint.exe"
-let g:ale_ldif_ldiflint_executable = "C:/opt/bin/ldiflint.exe"
-let g:ale_yaml_yamllint_executable = "C:/Users/srp/AppData/Roaming/Python/Python39/Scripts/yamllint.exe"
-"}}}2
-
-"{{{2 vim-jsx-pretty
-let g:vim_jsx_pretty_colorful_config = 1
-"}}}2
-
-"{{{2 haskell-vim
-let g:haskell_classic_highlighting = 1
-"}}}2
-
-"{{{2 Rainbow Parentheses
-" let g:rainbow#pairs = [['(',')'], ['[',']']]
-" let g:rainbow#max_level = 16
-"}}}
 
 "{{{2 Open-Browser
 	" let g:openbrowser_browser_commands = [
@@ -351,55 +251,8 @@ let g:haskell_classic_highlighting = 1
 	" \]
 "}}}
 
-"{{{2 Quickrun
-let g:quickrun_config = {}
-let g:quickrun_config.plantuml = {
-			\ 'command': 'plantuml',
-			\ 'exec': 'java -jar c:/var/java/lib/plantuml.jar %o %s',
-			\ 'cmdopt': '-overwrite',
-			\ 'outputter': 'browser',
-			\ 'outputter/browser/name': '%{expand("%:p:r:t").".png"}', }
-let g:quickrun_config.markdown = {
-			\ 'type': 'markdown/pandoc',
-			\ 'cmdopt': '-s',
-			\ 'outputter': 'browser', }
-let g:quickrun_config.autohotkey = {
-			\ 'exec': 'c:/opt/AutoHotkey/AutoHotkeyC.exe %{expand("%")}',
-			\ 'outputter/buffer/opener': 'new' }
-let g:quickrun_config.groovy = {
-			\ 'command' : 'groovy'
-			\, 'cmdopt' : '' }
-let g:quickrun_config.ballerina = {
-			\ 'exec' : 'c:/opt/ballerina/bin/bal.bat run %{expand("%")}' }
-let g:quickrun_config.kotlin = {
-			\ 'exec' : 'c:/opt/bin/kotlin-quickrun.bat %{expand("%")}'}
-let g:quickrun_config.python = {
-			\ 'exec' : $HOME
-			\ . 'AppData/Local/Programs/Python/Python39/python.exe %s' }
-"}}}
-
-"{{{2 Fern
-let g:fern#renderer = "nerdfont"
-"}}}
-
-"{{{2 vim-lsc
-" let g:lsc_server_commands = {'java': 'c:/var/lsp/java-language-server/dist/lang_server_windows.cmd'}
-"}}}
- 
-"{{{2 Hexokinase
-let g:Hexokinase_highlighters = [ 'sign_column' ]
-let g:Hexokinase_ftEnabled = ['css', 'html', 'javascript', 'text', 'vim', 'colortemplate']
-"}}}
-
-"{{{2 FZF
-let g:fzf_preview_window = []
-"}}}
-
-"{{{2 Python-Syntax
-let g:python_highlight_string_formatting=1
-let g:python_highlight_string_format=1
-"}}}
 "}}}1
+
 
 " vim:tw=78:ts=4:sts=4:sw=4:noet:ft=vim:nobomb
 " vim:fdm=marker
