@@ -9,6 +9,7 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH:/c/msys64/mingw64/bin
 export PATH=$PATH:/c/opt/neovim/bin
 export PATH=$PATH:/c/opt/nodejs
+export PATH=$PATH:$HOME/AppData/Roaming/local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/kpsch/.oh-my-zsh"
@@ -80,7 +81,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,3 +133,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f "/c/ghcup/env" ] && source "/c/ghcup/env" # ghcup-env
