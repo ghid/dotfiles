@@ -17,3 +17,4 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'tyru/open-browser.vim',
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'vimwiki/vimwiki'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
