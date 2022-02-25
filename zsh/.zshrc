@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH:/c/msys64/mingw64/bin
+export PATH=$PATH:/c/opt/vim/vim82
 export PATH=$PATH:/c/opt/neovim/bin
 export PATH=$PATH:/c/opt/nodejs
 export PATH=$PATH:$HOME/AppData/Roaming/local/bin
