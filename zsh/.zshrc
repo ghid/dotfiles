@@ -103,6 +103,8 @@ alias gvim="/c/opt/vim/vim82/gvim.exe"
 
 zstyle ':completion:*' fake-files /: '/:c'
 
+bindkey '^ ' autosuggest-accept
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
